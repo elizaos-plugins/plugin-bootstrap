@@ -8,6 +8,7 @@ import {
     Memory,
     ModelClass,
     State,
+    HandlerCallback,
 } from "@elizaos/core";
 
 export const shouldMuteTemplate =
@@ -44,7 +45,19 @@ export const muteRoomAction: Action = {
         );
         return userState !== "MUTED";
     },
-    handler: async (runtime: IAgentRuntime, message: Memory) => {
+    handler: async ({
+        runtime,
+        message,
+        // state,
+        options,
+        callback,
+    }: {
+        runtime: IAgentRuntime,
+        message: Memory,
+        state: State,
+        options: any,
+        callback: HandlerCallback
+    }) => {
         async function _shouldMute(state: State): Promise<boolean> {
             const shouldMuteContext = composeContext({
                 state,

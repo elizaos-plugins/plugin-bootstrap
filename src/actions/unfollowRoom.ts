@@ -42,7 +42,19 @@ export const unfollowRoomAction: Action = {
         );
         return userState === "FOLLOWED";
     },
-    handler: async (runtime: IAgentRuntime, message: Memory) => {
+    handler: async ({
+        runtime,
+        message,
+        // state,
+        options,
+        callback,
+    }: {
+        runtime: IAgentRuntime,
+        message: Memory,
+        state: State,
+        options: any,
+        callback: HandlerCallback
+    }) => {
         async function _shouldUnfollow(state: State): Promise<boolean> {
             const shouldUnfollowContext = composeContext({
                 state,

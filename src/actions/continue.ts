@@ -84,13 +84,19 @@ export const continueAction: Action = {
 
         return true;
     },
-    handler: async (
+    handler: async ({
+        runtime,
+        message,
+        state,
+        options,
+        callback,
+    }: {
         runtime: IAgentRuntime,
         message: Memory,
         state: State,
         options: any,
         callback: HandlerCallback
-    ) => {
+    }) => {
         if (
             message.content.text.endsWith("?") ||
             message.content.text.endsWith("!")

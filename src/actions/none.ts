@@ -3,6 +3,8 @@ import {
     IAgentRuntime,
     Memory,
     type Action,
+    type State,
+    type HandlerCallback,
 } from "@elizaos/core";
 
 export const noneAction: Action = {
@@ -20,10 +22,19 @@ export const noneAction: Action = {
     },
     description:
         "Respond but perform no additional action. This is the default if the agent is speaking and not doing anything additional.",
-    handler: async (
-        _runtime: IAgentRuntime,
-        _message: Memory
-    ): Promise<boolean> => {
+    handler: async ({
+        runtime,
+        message,
+        state,
+        options,
+        callback,
+    }: {
+        runtime: IAgentRuntime,
+        message: Memory,
+        state: State,
+        options: any,
+        callback: HandlerCallback
+    }): Promise<boolean> => {
         return true;
     },
     examples: [

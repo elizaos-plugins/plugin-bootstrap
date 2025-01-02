@@ -8,6 +8,7 @@ import {
     Memory,
     ModelClass,
     State,
+    HandlerCallback,
 } from "@elizaos/core";
 
 export const shouldFollowTemplate =
@@ -57,7 +58,19 @@ export const followRoomAction: Action = {
         );
         return userState !== "FOLLOWED" && userState !== "MUTED";
     },
-    handler: async (runtime: IAgentRuntime, message: Memory) => {
+    handler: async ({
+        runtime,
+        message,
+        // state,
+        options,
+        callback,
+    }: {
+        runtime: IAgentRuntime,
+        message: Memory,
+        state: State,
+        options: any,
+        callback: HandlerCallback
+    }) => {
         async function _shouldFollow(state: State): Promise<boolean> {
             const shouldFollowContext = composeContext({
                 state,

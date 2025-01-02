@@ -13,10 +13,19 @@ export const ignoreAction: Action = {
     },
     description:
         "Call this action if ignoring the user. If the user is aggressive, creepy or is finished with the conversation, use this action. Or, if both you and the user have already said goodbye, use this action instead of saying bye again. Use IGNORE any time the conversation has naturally ended. Do not use IGNORE if the user has engaged directly, or if something went wrong an you need to tell them. Only ignore if the user should be ignored.",
-    handler: async (
-        _runtime: IAgentRuntime,
-        _message: Memory
-    ): Promise<boolean> => {
+    handler: async ({
+        runtime,
+        message,
+        state,
+        options,
+        callback,
+    }: {
+        runtime: IAgentRuntime,
+        message: Memory,
+        state: State,
+        options: any,
+        callback: HandlerCallback
+    }): Promise<boolean> => {
         return true;
     },
     examples: [
